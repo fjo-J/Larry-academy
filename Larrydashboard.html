@@ -193,16 +193,77 @@
                 </div>
             </div>
 
-            <div id="view-2-1" class="view-panel h-full overflow-y-auto bg-white fade-in absolute inset-0 hidden">
-                <div class="p-8 lg:p-12 max-w-4xl mx-auto">
-                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Anti-Patterns</span>
-                    <h1 class="text-3xl font-black text-slate-900 mb-4">初心者が必ず引っかかる「AIの罠」</h1>
-                    <p class="text-slate-600 leading-relaxed mb-8">AIに指示を出す際、多くの人が「見た目」だけを整えさせて満足してしまいます。AIが吐き出す「使えないゴミコード」を防ぐための軌道修正の型を学びます。</p>
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
-                        <h4 class="font-bold text-slate-800 mb-2">罠：「見た目」だけを整えさせる</h4>
-                        <p class="text-sm text-slate-600 mb-4">NGプロンプト：検索しやすいUI案を作って<br>プロのラリー：実際に動かすための「ノウハウDB（裏側の仕組み）」を組み込んで作り直して。</p>
+            <div id="view-2-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden">
+                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase tracking-wider">Anti-Patterns</span>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">初心者が必ず引っかかる「3つのAIの罠」</h1>
+                <p class="text-slate-600 leading-relaxed mb-8">AIに指示を出す際、初心者は無意識にAIを暴走させる「NGプロンプト」を投げてしまいます。ここでは、AIが吐き出す「使えないゴミコード」や「ピント外れな回答」を防ぐための、3つの代表的な罠とその回避術（プロのラリー）を学びます。</p>
+
+                <div class="space-y-8 mb-8">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm"><i class="fas fa-eye"></i></div>
+                            <h3 class="font-bold text-slate-800 text-lg">罠①：「見た目」だけを整えさせる</h3>
+                        </div>
+                        <div class="p-6 grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">初心者のNGプロンプト</h4>
+                                <div class="bg-slate-900 text-slate-300 p-4 rounded-lg font-mono text-sm mb-4">「検索しやすいUI案を作って」「見やすい手順書にして」</div>
+                                <p class="text-sm text-slate-600">AIは「見た目」を整えるのが得意なため、中身（実データやノウハウ）がスッカラカンな「箱だけ」を出してきます。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-blue-500 uppercase mb-2">プロの回避策（ラリー）</h4>
+                                <div class="bg-blue-50 border border-blue-100 text-blue-900 p-4 rounded-lg font-mono text-sm mb-4">
+                                    「今の状態だと『ただの空の箱』になりすぎているね。実際に動かすための<strong class="text-blue-600">『裏側の仕組み（ノウハウDB）』</strong>を組み込んで作り直して。」
+                                </div>
+                                <p class="text-sm text-slate-600">枠組みができた段階で「裏側の仕組みの欠落」を鋭く指摘し、中身を埋めさせます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm"><i class="fas fa-comment-dots"></i></div>
+                            <h3 class="font-bold text-slate-800 text-lg">罠②：「空気を読んで」機能を足させる</h3>
+                        </div>
+                        <div class="p-6 grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">初心者のNGプロンプト</h4>
+                                <div class="bg-slate-900 text-slate-300 p-4 rounded-lg font-mono text-sm mb-4">「もっと使いやすくして」「何か良い機能を追加して」</div>
+                                <p class="text-sm text-slate-600">現場のニーズに合わない、ピントのズレた一般的な機能（SNSシェア機能など）を勝手に提案してきて脱線します。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-blue-500 uppercase mb-2">プロの回避策（ラリー）</h4>
+                                <div class="bg-blue-50 border border-blue-100 text-blue-900 p-4 rounded-lg font-mono text-sm mb-4">
+                                    「終わった作業をチェックできる<strong class="text-blue-600">マイルストーン機能</strong>を追加して。あと、<strong class="text-blue-600">プロンプトはコピペできるように</strong>明示して。」
+                                </div>
+                                <p class="text-sm text-slate-600">AIに空気を読ませず、具体的な利用シーンを添えてピンポイントで指示します。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm"><i class="fas fa-rocket"></i></div>
+                            <h3 class="font-bold text-slate-800 text-lg">罠③：すべてを「一発」で終わらせようとする</h3>
+                        </div>
+                        <div class="p-6 grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">初心者のNGプロンプト</h4>
+                                <div class="bg-slate-900 text-slate-300 p-4 rounded-lg font-mono text-sm mb-4">「要件定義からデザイン、実装コード、テスト手順まで全て書いて」</div>
+                                <p class="text-sm text-slate-600">AIの処理能力（出力文字数）の限界を超え、途中で回答が途切れたり、全体的に浅い（薄い）回答になってしまいます。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-blue-500 uppercase mb-2">プロの回避策（ラリー）</h4>
+                                <div class="bg-blue-50 border border-blue-100 text-blue-900 p-4 rounded-lg font-mono text-sm mb-4">
+                                    「まずは<strong class="text-blue-600">骨組みとなるドラフト（叩き台）だけ</strong>を出力して。実装コードは次のステップで指示します。」
+                                </div>
+                                <p class="text-sm text-slate-600">タスクを分割し、AIの出力リソースを「1つの深い思考」に集中させます。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-2-2').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-2-2" class="view-panel h-full overflow-y-auto bg-white fade-in absolute inset-0 hidden">

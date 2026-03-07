@@ -415,6 +415,7 @@ HTMLとCSSでシンプルな枠組みを作ってください。
     </main>
 
     <script>
+        <script>
         function switchView(viewId, navElement, progressPercentage, headerText) {
             // すべてのパネルを隠す
             document.querySelectorAll('.view-panel').forEach(panel => {
@@ -433,15 +434,18 @@ HTMLとCSSでシンプルな枠組みを作ってください。
                 targetView.classList.add('z-20');
             }
             
-            // クリックしたメニューをアクティブに
+            // 遷移したメニューをアクティブに
             navElement.classList.add('active-nav');
+
+            // 🌟🌟 今回の修正：左側のメニューを自動でスクロールして追従させる 🌟🌟
+            navElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             // ヘッダーと進捗バーの更新
             document.getElementById('header-title').innerHTML = headerText;
             document.getElementById('progress-bar').style.width = progressPercentage;
             document.getElementById('progress-text').innerText = progressPercentage;
             
-            // スクロールを一番上に戻す
+            // 右側のメイン画面のスクロールを一番上に戻す
             document.getElementById('main-scroll-area').scrollTop = 0;
         }
 
@@ -468,6 +472,7 @@ HTMLとCSSでシンプルな枠組みを作ってください。
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('nav-1-1').click();
         });
+    </script>
     </script>
 </body>
 </html>

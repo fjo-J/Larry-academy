@@ -14,8 +14,6 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .nav-item { transition: all 0.2s ease-in-out; border-right: 3px solid transparent; cursor: pointer; }
         .active-nav { background-color: #e0f2fe; color: #0284c7; border-right-color: #0284c7; font-weight: bold; pointer-events: none; }
-        .active-nav i.status-icon { color: #38bdf8; }
-        .active-nav i.status-icon::before { content: "\f111"; font-weight: 400; }
         .code-box { background-color: #0f172a; color: #e2e8f0; border-radius: 0 0 0.75rem 0.75rem; }
         .fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes fadeIn {
@@ -42,7 +40,7 @@
             </div>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-4 pb-12">
+        <nav class="flex-1 overflow-y-auto py-4 pb-12" id="nav-container">
             <div class="px-6 mb-2 mt-2"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-blue-600">Module 1: Mindset & Prep</span></div>
             <a id="nav-1-1" onclick="switchView('view-1-1', this, '5%', '1-1. 脱・一発生成の罠')" class="nav-item block px-6 py-3 text-sm text-slate-600 hover:bg-slate-50">1-1. 脱・一発生成の罠</a>
             <a id="nav-1-2" onclick="switchView('view-1-2', this, '10%', '1-2. VS Codeの完全導入')" class="nav-item block px-6 py-3 text-sm text-slate-600 hover:bg-slate-50">1-2. VS Codeの完全導入</a>
@@ -80,7 +78,7 @@
 
     <main class="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative">
         <header class="h-16 flex items-center justify-between px-8 border-b border-slate-200 shrink-0 bg-white z-20 shadow-sm">
-            <h2 id="header-title" class="font-bold text-slate-800 transition-all">カリキュラムを読み込んでいます...</h2>
+            <h2 id="header-title" class="font-bold text-slate-800 transition-all">読み込み中...</h2>
             <div class="flex items-center gap-4">
                 <button class="text-sm font-bold text-slate-500 hover:text-blue-600"><i class="far fa-life-ring mr-1"></i> サポート</button>
             </div>
@@ -91,7 +89,7 @@
             <div id="view-1-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">Mindset</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">今の自分を「拡張」するスキル</h1>
-                <p class="text-slate-600 mb-8 leading-relaxed">AIエンジニアに転職する必要はありません。今のあなたの専門知識にAIという武器を掛け合わせることで、インプットの質を飛躍させ、可能性を劇的に広げることがLarryの目的です。</p>
+                <p class="text-slate-600 mb-8 leading-relaxed">AIエンジニアに転職する必要はありません。今のあなたの専門知識にAIという武器を掛け合わせることで、インプットの質を飛躍させ、可能性を劇的に広げるのがLarryの目的です。</p>
                 <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-10">
                     <h3 class="text-xl font-bold text-slate-800 mb-4">AIは「空気が読めない新入社員」</h3>
                     <p class="text-sm text-slate-600 mb-6">1回のプロンプトで完璧な答えを出させようとするのはやめましょう。まずは60点の叩き台を作らせ、ツッコミ（ラリー）を入れて育て上げるのがプロの思考です。</p>
@@ -113,10 +111,6 @@
                         <h3 class="font-bold mb-2 text-red-600"><i class="fas fa-exclamation-triangle"></i> 2. 【重要】必ず「フォルダ」ごと開く</h3>
                         <p class="text-sm text-slate-600">空のフォルダを作り、VS Codeの「フォルダーを開く」から読み込みます。ファイルだけを直接作るとプレビュー機能が動きません！</p>
                     </div>
-                    <div>
-                        <h3 class="font-bold mb-2">3. 「Go Live」で形にする</h3>
-                        <p class="text-sm text-slate-600">フォルダ内に <code>index.html</code> を作りコードを保存したら、画面右下の「Go Live」をクリックします。</p>
-                    </div>
                 </div>
                 <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-2-1').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
@@ -124,71 +118,44 @@
             <div id="view-2-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">Anti-Patterns</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">初心者が必ず引っかかる「3つのAIの罠」</h1>
-                <p class="text-slate-600 leading-relaxed mb-8">AIに指示を出す際、初心者は無意識にAIを暴走させるNGプロンプトを投げてしまいます。ここでは代表的な3つの罠とその回避術を学びます。</p>
-                
-                <div class="space-y-6 mb-8">
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl">
+                <div class="space-y-6 mb-8 mt-8">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6">
                         <h4 class="font-bold text-slate-800 mb-2">罠①：「見た目」だけを整えさせる</h4>
-                        <div class="grid md:grid-cols-2 gap-4 mt-3">
-                            <div><span class="text-xs text-red-500 font-bold">NGプロンプト</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1">「検索しやすいUI案を作って」</div></div>
-                            <div><span class="text-xs text-blue-600 font-bold">プロのラリー（回避策）</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1 border-l-4 border-blue-500">「実際に動かすための『ノウハウDB（裏側の仕組み）』を組み込んで作り直して」</div></div>
-                        </div>
+                        <p class="text-sm text-slate-600">プロのラリー：実際に動かすための「裏側の仕組み（ノウハウDB）」を組み込んで作り直して。</p>
                     </div>
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6">
                         <h4 class="font-bold text-slate-800 mb-2">罠②：「空気を読んで」機能を足させる</h4>
-                        <div class="grid md:grid-cols-2 gap-4 mt-3">
-                            <div><span class="text-xs text-red-500 font-bold">NGプロンプト</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1">「もっと使いやすく何か良い機能を追加して」</div></div>
-                            <div><span class="text-xs text-blue-600 font-bold">プロのラリー（回避策）</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1 border-l-4 border-blue-500">「終わった作業をチェックできる『マイルストーン機能』を追加して」とピンポイントで指示する。</div></div>
-                        </div>
+                        <p class="text-sm text-slate-600">プロのラリー：AIに空気を読ませず、具体的な利用シーンを添えてピンポイントで指示する。</p>
                     </div>
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6">
                         <h4 class="font-bold text-slate-800 mb-2">罠③：すべてを「一発」で終わらせようとする</h4>
-                        <div class="grid md:grid-cols-2 gap-4 mt-3">
-                            <div><span class="text-xs text-red-500 font-bold">NGプロンプト</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1">「要件定義から実装コード、テスト手順まで全て書いて」</div></div>
-                            <div><span class="text-xs text-blue-600 font-bold">プロのラリー（回避策）</span><div class="bg-white p-3 rounded text-sm text-slate-600 mt-1 border-l-4 border-blue-500">「まずは骨組みとなるドラフト（叩き台）だけを出力して。実装は次のステップで行います。」</div></div>
-                        </div>
+                        <p class="text-sm text-slate-600">プロのラリー：タスクを分割し、まずは骨組みだけを出力させ、一歩ずつ深掘りする。</p>
                     </div>
                 </div>
                 <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-2-2').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-2-2" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">Rules</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">意図を的確に伝える「コンテキスト（背景情報）」</h1>
-                <p class="text-slate-600 leading-relaxed mb-8">AIはあなたの会社の事情を知りません。「誰が」「どんな状況で」「何のために」使うのかという背景情報を与えるだけで、出力の解像度が劇的に上がります。これはどんなツールを作る時でも必須の「お作法」です。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">意図を的確に伝える「コンテキスト」</h1>
+                <p class="text-slate-600 mb-8 leading-relaxed">AIはあなたの会社の事情を知りません。「誰が」「どんな状況で」「何のために」使うのかという背景情報を与えるだけで、出力の解像度が劇的に上がります。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center">
-                        <span class="text-xs font-mono text-slate-400">Context_Template.txt</span>
-                        <button onclick="copyPrompt('prompt-2-2', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button>
-                    </div>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs font-mono text-slate-400">Context_Template.txt</span><button onclick="copyPrompt('prompt-2-2', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
                     <pre id="prompt-2-2" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">以下の要件に従って、[ 作成したいもの ] を作成してください。
-
-【コンテキスト（前提条件）】
-・私の役割：[ 例：ITリテラシーの低い社員をまとめるマネージャー ]
-・ターゲット：[ 例：スマホ操作が苦手な50代の現場スタッフ ]
-・目的：[ 例：日々の業務報告の心理的ハードルを下げ、提出率を上げること ]
-
-まずは、この条件を満たすための必要な要素を箇条書きで3つ提案してください。</pre>
+【コンテキスト】
+・私の役割：[ マネージャー ]
+・ターゲット：[ 現場スタッフ ]
+・目的：[ 報告の提出率を上げること ]</pre>
                 </div>
                 <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-2-3').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-2-3" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">Rules</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">出力形式のコントロール術</h1>
-                <p class="text-slate-600 leading-relaxed mb-8">AIは放っておくとダラダラと長い文章を書きます。「Markdown形式で」「表形式で比較して」「コードブロックのみで出力して」と、アウトプットの『器』を強制的に指定するテクニックです。無駄な前置きを削り、生産性を高めます。</p>
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h4 class="font-bold mb-3 text-slate-800"><i class="fas fa-table text-blue-500 mr-2"></i>比較検討させたい時</h4>
-                        <div class="bg-white p-4 border border-slate-200 rounded-lg text-sm text-slate-700 font-mono shadow-sm">
-                            3つの案を提案し、それぞれの「メリット・デメリット・コスト」を<strong class="text-blue-600">【表形式（マークダウン）】</strong>で比較出力してください。
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h4 class="font-bold mb-3 text-slate-800"><i class="fas fa-code text-blue-500 mr-2"></i>コードだけ欲しい時</h4>
-                        <div class="bg-white p-4 border border-slate-200 rounded-lg text-sm text-slate-700 font-mono shadow-sm">
-                            解説や前置きは一切不要です。実装に必要なHTML/CSSのみを<strong class="text-blue-600">【1つのコードブロック】</strong>で出力してください。
-                        </div>
+                <p class="text-slate-600 leading-relaxed mb-8">AIにアウトプットの『器』を強制的に指定するテクニックです。「Markdown形式で」「表形式で比較して」など、後で見直しやすい形で出させます。</p>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-8">
+                    <h4 class="font-bold mb-3 text-slate-800">例：比較検討させたい時</h4>
+                    <div class="bg-white p-4 border border-slate-200 rounded-lg text-sm text-slate-700 font-mono shadow-sm">
+                        3つの案を提案し、それぞれのメリット・デメリットを【表形式】で出力してください。
                     </div>
                 </div>
                 <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-1').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">実践ワークへ <i class="fas fa-arrow-right ml-2"></i></button></div>
@@ -197,217 +164,135 @@
             <div id="view-3-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Case 1: Step 1</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">まずは「砂場（Sandbox）」を作らせる</h1>
-                <p class="text-slate-600 mb-6">最初から100個の要望を詰め込まず、まずは最低限の要件で枠組みを出力させます。これが「ラリー」の第1球目です。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_1.txt</span><button onclick="copyPrompt('prompt-3-1', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_1.txt</span><button onclick="copyPrompt('prompt-3-1', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
                     <pre id="prompt-3-1" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">社内の日報入力ツールを作りたいです。
 HTMLとCSSでシンプルな枠組みを作ってください。
-
 必要な項目は「日付」「名前」「業務内容」の3つです。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-3-2" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Case 1: Step 2</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">「使えない箱」を実務ツールに進化させる</h1>
-                <p class="text-slate-600 mb-6">第1球でできた土台に対して、バリデーション（エラーチェック）やデザインフレームワークの指定を行い、実務レベルに引き上げる第2球（プロのツッコミ）です。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">実務ツールに進化させる</h1>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_2.txt</span><button onclick="copyPrompt('prompt-3-2', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-3-2" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">先ほどのコードは枠組みとしてはOKですが、実運用には耐えません。以下の3点を追加して作り直してください。
-
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_2.txt</span><button onclick="copyPrompt('prompt-3-2', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-3-2" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">先ほどのコードは枠組みとしてはOKですが、実運用には耐えません。
 1. 未入力で送信した場合、赤文字でエラーを出す。
-2. Tailwind CSSを用いてモダンで綺麗なデザインにする。
-3. 「明日の予定」欄を追加する。</pre>
+2. Tailwind CSSを用いてモダンなデザインにする。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-3-3" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Case 1: Step 3</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">UXの最終調整</h1>
-                <p class="text-slate-600 mb-6">直前の出力の良いところを褒めて「先祖返り（せっかくのデザインが消えること）」を防ぎつつ、ユーザー目線での使い勝手（余白やクリアボタン）を向上させます。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_3.txt</span><button onclick="copyPrompt('prompt-3-3', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-3-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">素晴らしいです。最後に、UX向上のため以下の2点を微調整してください。
-
-1. フォーム全体にもう少しゆとり（広めのPadding）を持たせてください。
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_3.txt</span><button onclick="copyPrompt('prompt-3-3', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-3-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">素晴らしいです。最後に、使い勝手向上のため以下の2点を微調整してください。
+1. フォーム全体にもう少しゆとりを持たせてください。
 2. 入力内容をリセットする「クリアボタン」を追加してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-4').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">LP構築編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-4').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">LP構築編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-3-4" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Case 2: LP Construction</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">構成案を壁打ちで作る</h1>
-                <p class="text-slate-600 mb-6">ランディングページ（LP）を作る際、いきなりコードを書かせると売れないゴミページが完成します。まずはプロのマーケターとして、AIと「売れる骨組み」を作ります。</p>
+                <p class="text-slate-600 mb-6">いきなりコードを書かせるのではなく、まずは「ターゲットの悩み」「解決策」といったLPの骨組みをAIと一緒に作ります。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_LP1.txt</span><button onclick="copyPrompt('prompt-3-4', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_LP1.txt</span><button onclick="copyPrompt('prompt-3-4', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
                     <pre id="prompt-3-4" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">あなたはプロのWebマーケターです。
-[ 販売したい商品：例「AI活用オンラインスクール」 ] のLPを作成します。
-
-いきなりコードは書かず、まずは以下の要素を含んだ「LPの構成案（ワイヤーフレーム）」をテキストで作成してください。
-
-1. ターゲットの痛烈な悩み（3つ）
-2. ヒーローセクション（キャッチコピー）
-3. 解決策とベネフィット
-4. 行動喚起（CTA）</pre>
+[ 商品名 ] のLPを作成します。まずは以下の要素を含んだ構成案を作成してください。
+1. ターゲットの悩み、2. キャッチコピー、3. 行動喚起(CTA)</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-5').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-3-5').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-3-5" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Case 2: LP Construction</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">コピーのトーンを調教する</h1>
-                <p class="text-slate-600 mb-6">構成案ができたら、次は「言葉の温度感」をあなたのブランドに合わせて調整（調教）します。AI特有のお堅い文章を、人間味あふれる売れるコピーに変換します。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_LP2.txt</span><button onclick="copyPrompt('prompt-3-5', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-3-5" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">構成案は素晴らしいです。
-ただ、現在の文章は少し「お堅い企業向け」のトーンになっています。
-
-この構成案のすべてのテキストを、以下のトーン＆マナーで書き直してください。
-・専門用語を一切使わない
-・読者に「私にもできるかも！」とワクワクさせる情熱的な表現
-・語尾は「〜ですよね？」「〜しましょう！」など親しみやすく</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_LP2.txt</span><button onclick="copyPrompt('prompt-3-5', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-3-5" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">構成案は素晴らしいです。ただ、文章が少しお堅いです。
+「小学生でもわかるように」「ワクワクさせる情熱的な表現」で書き直してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">企画書編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">企画書編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-4-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Biz & Doc</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">アイデアを昇華させるラリー</h1>
-                <p class="text-slate-600 mb-6">AIに「何かアイデア出して」と言うと、ネットに落ちている無難でつまらない答えしか返ってきません。制約や逆転の発想を与えて、思考を極限まで深掘りさせるツッコミです。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Idea.txt</span><button onclick="copyPrompt('prompt-4-1', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-4-1" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">提示してくれたアイデアは少し無難すぎます。
-以下のフレームワークを用いて、より尖った斬新な切り口を3つ再提案してください。
-
-1. 【逆転の発想】業界の常識の「真逆」をいくアプローチ
-2. 【極端な制約】予算が1万円しかない場合にどう達成するか
-3. 【異業種ミックス】エンタメ業界の要素を取り入れたアプローチ</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Idea.txt</span><button onclick="copyPrompt('prompt-4-1', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-4-1" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">提示してくれたアイデアは少し無難です。
+「業界の常識の真逆」をいくアプローチを3つ再提案してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-4-2" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Biz & Doc</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">箇条書きから完璧な企画書へ</h1>
-                <p class="text-slate-600 mb-6">移動中のスマホで打った雑な箇条書きメモから、上司を説得できる論理的な企画書を一瞬で錬成する、究極の時短プロンプトです。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Doc.txt</span><button onclick="copyPrompt('prompt-4-2', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-4-2" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">以下のバラバラのメモ書きを元に、A4 1枚で上司を説得できる「新規プロジェクト企画書」を作成してください。
-
-【構成の指定】
-1. 背景と課題（なぜやるのか）
-2. 提案内容（何をやるのか）
-3. 期待される効果（定量・定性）
-4. 概算スケジュールと必要リソース
-
-【私のメモ】
-・最近、社内の情報共有が遅い
-・週1のミーティングやめて、Slackの専用チャンネルで毎日10時に報告させたい
-・たぶん残業代減るし、若手も発言しやすくなるはず</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Doc.txt</span><button onclick="copyPrompt('prompt-4-2', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-4-2" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">以下の雑なメモを元に、論理的な「新規プロジェクト企画書」を作成してください。
+【構成】1. 背景、2. 提案、3. 効果</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-4-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-4-3" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Biz & Doc</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">既存データのエラー修正（デバッグ）</h1>
-                <p class="text-slate-600 mb-6">自分が書いた文章の違和感や、動かないコードをAIに丸投げして「どこが悪いか」を指摘させる、あなたの専属の添削アシスタント化プロンプトです。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">既存データのエラー修正</h1>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Fix.txt</span><button onclick="copyPrompt('prompt-4-3', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-4-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">以下の [ 文章 / コード ] には問題（違和感やエラー）があります。
-
-プロの視点で分析し、以下の2点を出力してください。
-1. 具体的にどこが、なぜ悪いのかの指摘（箇条書き）
-2. それを修正した完璧な [ 文章 / コード ]
-
-【対象データ】
-[ ここに作成途中の文章やコードを貼り付ける ]</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Fix.txt</span><button onclick="copyPrompt('prompt-4-3', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-4-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">以下のコードにエラーがあります。
+どこが悪いか指摘した上で、修正した完璧なコードを出力してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-5-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">アウトプット編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-5-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">アウトプット編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-5-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">The Output</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">インプットを「社内評価」に変換する</h1>
-                <p class="text-slate-600 mb-8 leading-relaxed">質の高い成果物を「上司やクライアントにドヤれる形（URLやPDF）」にして外へ届ける、アウトプットのスキルを学びます。今のあなたの価値を爆増させる最後のピースです。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">インプットを「評価」に変える</h1>
+                <p class="text-slate-600 mb-8 leading-relaxed">質の高い成果物を「URLやPDF」にして外へ届けるスキルを学びます。今のあなたの価値を爆増させる最後のピースです。</p>
                 <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-5-2').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-5-2" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">GitHub Pages</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">一瞬で世界へ繋ぐ「URL化」の魔法</h1>
-                <p class="text-slate-600 mb-8">GitHubを使えば、ドラッグ＆ドロップだけで成果物が全世界に公開されます。「AIで作ってみたので触ってみてください」とURLをチャットで送るだけで、周りの見る目は確実に変わります。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">URL化の魔法 (GitHub)</h1>
                 <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl mb-8">
                     <ul class="space-y-4 text-sm text-slate-700">
-                        <li class="flex items-start"><i class="fas fa-arrow-right text-purple-500 mt-1 mr-3"></i> <div><strong>1. リポジトリ作成：</strong> GitHubで新しい箱（Public）を作る。</div></li>
-                        <li class="flex items-start"><i class="fas fa-arrow-right text-purple-500 mt-1 mr-3"></i> <div><strong>2. ドロップ＆コミット：</strong> 作成した `index.html` などを直接放り込んで保存。</div></li>
-                        <li class="flex items-start"><i class="fas fa-arrow-right text-purple-500 mt-1 mr-3"></i> <div><strong>3. Pagesをオンにする：</strong> 設定からBranchを「main」にしてSave。数分でURLが発行されます。</div></li>
+                        <li>1. GitHubでリポジトリを作る。</li>
+                        <li>2. `index.html` をドロップして保存。</li>
+                        <li>3. Pagesを有効にする。これでURLが発行されます。</li>
                     </ul>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-5-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-5-3').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">次へ進む <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-5-3" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded mb-3 inline-block uppercase">PDF Print</span>
-                <h1 class="text-3xl font-black text-slate-900 mb-4">完璧な企画書に仕上げる「PDF調教術」</h1>
-                <p class="text-slate-600 mb-6">Web画面をそのまま印刷するとレイアウトが崩れます。AIに「@media print」のCSSを追加させ、印刷時専用の綺麗なレイアウトを組ませるテクニックです。</p>
+                <h1 class="text-3xl font-black text-slate-900 mb-4">完璧な資料化 (PDF)</h1>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_PDF.txt</span><button onclick="copyPrompt('prompt-5-3', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-5-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">このページをブラウザからPDFで綺麗に印刷（出力）したいです。
-印刷時に背景色や画像が保持され、A4サイズで改ページが綺麗に行われるような「@media print」のCSSをコードに追加してください。</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_PDF.txt</span><button onclick="copyPrompt('prompt-5-3', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-5-3" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">印刷時に背景色が保持され、A4サイズで改ページが綺麗に行われるような「@media print」のCSSを追加してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-6-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">マスターピース編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-6-1').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">マスターピース編へ <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-6-1" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
-                <span class="bg-yellow-100 text-yellow-700 text-xs font-bold px-3 py-1 rounded mb-4 inline-block">Masterpiece</span>
                 <h1 class="text-3xl font-black text-slate-900 mb-4">究極奥義：メタ・プロンプティング</h1>
-                <p class="text-slate-600 mb-6">あなたとAIの良い対話プロセスが完了したら、それをあなただけの「資産」にします。AI自身に「今のやり取りをテンプレート化しろ」と命じる、本スクールの総仕上げです。</p>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 mb-8">
-                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Meta.txt</span><button onclick="copyPrompt('prompt-6-1', this)" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-4 py-1.5 rounded transition"><i class="fas fa-copy mr-1"></i> コピー</button></div>
-                    <pre id="prompt-6-1" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">今の私たちの一連の会話（ラリー）は非常に生産的でした。
-このスレッドの一番最初から遡って、私があなたにどんな指示を出して、あなたがどう改善したかを分析・解析してください。
-
-そして、初心者の同僚が次回同じ成果を出せるように、[ ] を埋めるだけで使える「汎用プロンプトのテンプレート」として出力してください。</pre>
+                    <div class="bg-slate-800 px-4 py-3 flex justify-between items-center"><span class="text-xs text-slate-400 font-mono">Prompt_Meta.txt</span><button onclick="copyPrompt('prompt-6-1', this)" class="bg-slate-700 text-white text-xs px-3 py-1 rounded">コピー</button></div>
+                    <pre id="prompt-6-1" class="code-box p-6 text-sm font-mono whitespace-pre-wrap leading-relaxed">今の私たちの一連の会話を分析し、初心者が次回同じ成果を出せるような「汎用プロンプトのテンプレート」として出力してください。</pre>
                 </div>
-                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-6-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition">最後へ <i class="fas fa-arrow-right ml-2"></i></button></div>
+                <div class="flex justify-end pt-4"><button onclick="document.getElementById('nav-6-2').click()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">最後へ <i class="fas fa-arrow-right ml-2"></i></button></div>
             </div>
 
             <div id="view-6-2" class="view-panel p-8 lg:p-12 max-w-4xl mx-auto hidden fade-in">
                 <h1 class="text-3xl font-black text-slate-900 mb-4 text-yellow-600"><i class="fas fa-star mr-2"></i>【特典】軌道修正フレーズ集</h1>
-                <p class="text-slate-600 mb-8 leading-relaxed">AIの出力が微妙だった時に、サッとコピペして投げるだけでAIの軌道を元に戻せる「魔法のチートフレーズ」です。手元にストックして使い倒してください。</p>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                        <span class="text-xs font-bold text-red-500 mb-2 block">AIが前提を忘れた時</span>
-                        <div class="text-sm text-slate-700 font-mono bg-slate-50 p-4 rounded border border-slate-100">「一度深呼吸して、前提条件をもう一度確認してから回答を作り直してください。」</div>
-                    </div>
-                    <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                        <span class="text-xs font-bold text-red-500 mb-2 block">AIの回答が薄い時</span>
-                        <div class="text-sm text-slate-700 font-mono bg-slate-50 p-4 rounded border border-slate-100">「その出力は抽象的すぎます。具体的な数字や実例を交えて書き直してください。」</div>
-                    </div>
-                    <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                        <span class="text-xs font-bold text-red-500 mb-2 block">前置きが長すぎる時</span>
-                        <div class="text-sm text-slate-700 font-mono bg-slate-50 p-4 rounded border border-slate-100">「前置きや解説は不要です。結論（コード/文章）のみを出力してください。」</div>
-                    </div>
-                    <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                        <span class="text-xs font-bold text-red-500 mb-2 block">先祖返りを防ぐ時</span>
-                        <div class="text-sm text-slate-700 font-mono bg-slate-50 p-4 rounded border border-slate-100">「直前の出力は良かったです。その構成を維持したまま、以下の点だけを変更してください：」</div>
-                    </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 border border-slate-200 rounded-lg text-sm text-slate-700 font-mono shadow-sm">「一度深呼吸して、前提条件を確認して作り直してください。」</div>
+                    <div class="bg-white p-4 border border-slate-200 rounded-lg text-sm text-slate-700 font-mono shadow-sm">「抽象的すぎます。具体的な数字を交えて書き直してください。」</div>
                 </div>
-
-                <div class="mt-12 p-10 bg-gradient-to-br from-blue-600 to-purple-700 text-white rounded-2xl text-center shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl transform rotate-12"><i class="fas fa-trophy"></i></div>
-                    <div class="relative z-10">
-                        <h2 class="text-3xl font-black mb-4"><i class="fas fa-award text-yellow-300 mr-2"></i> 祝！全カリキュラム修了</h2>
-                        <p class="font-medium text-blue-100 leading-relaxed max-w-2xl mx-auto">
-                            あなたはAIを「作業者」から「最高の相棒」へと昇華させるスキルを手に入れました。<br>
-                            これからは、あなたの専門性とラリーの技術で、圧倒的な価値を生み出し続けてください！
-                        </p>
-                    </div>
+                <div class="mt-12 p-8 bg-blue-600 text-white rounded-2xl text-center shadow-2xl">
+                    <h2 class="text-2xl font-black mb-2"><i class="fas fa-trophy text-yellow-300 mr-2"></i> 祝！全カリキュラム修了</h2>
                 </div>
             </div>
 
@@ -415,37 +300,29 @@ HTMLとCSSでシンプルな枠組みを作ってください。
     </main>
 
     <script>
-        <script>
         function switchView(viewId, navElement, progressPercentage, headerText) {
-            // すべてのパネルを隠す
             document.querySelectorAll('.view-panel').forEach(panel => {
                 panel.classList.add('hidden');
                 panel.classList.remove('z-20');
             });
-            // ナビゲーションのアクティブ状態をリセット
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active-nav');
             });
 
-            // 指定されたパネルを表示
             const targetView = document.getElementById(viewId);
             if(targetView) {
                 targetView.classList.remove('hidden');
                 targetView.classList.add('z-20');
             }
             
-            // 遷移したメニューをアクティブに
             navElement.classList.add('active-nav');
-
-            // 🌟🌟 今回の修正：左側のメニューを自動でスクロールして追従させる 🌟🌟
+            
+            // 左メニューをスクロール追従させる
             navElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // ヘッダーと進捗バーの更新
             document.getElementById('header-title').innerHTML = headerText;
             document.getElementById('progress-bar').style.width = progressPercentage;
             document.getElementById('progress-text').innerText = progressPercentage;
-            
-            // 右側のメイン画面のスクロールを一番上に戻す
             document.getElementById('main-scroll-area').scrollTop = 0;
         }
 
@@ -453,26 +330,18 @@ HTMLとCSSでシンプルな枠組みを作ってください。
             const textToCopy = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalHtml = btnElement.innerHTML;
-                btnElement.innerHTML = '<i class="fas fa-check"></i> 完了！';
+                btnElement.innerHTML = '完了！';
                 btnElement.classList.replace('bg-slate-700', 'bg-teal-500');
-                btnElement.classList.replace('hover:bg-slate-600', 'hover:bg-teal-400');
-                
                 setTimeout(() => {
                     btnElement.innerHTML = originalHtml;
                     btnElement.classList.replace('bg-teal-500', 'bg-slate-700');
-                    btnElement.classList.replace('hover:bg-teal-400', 'hover:bg-slate-600');
                 }, 2000);
-            }).catch(err => {
-                console.error('コピー失敗', err);
-                alert('コピーに失敗しました。');
             });
         }
 
-        // 初期化（ページ読み込み時に1-1を表示）
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('nav-1-1').click();
         });
-    </script>
     </script>
 </body>
 </html>
